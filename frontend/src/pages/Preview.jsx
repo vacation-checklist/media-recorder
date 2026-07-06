@@ -9,7 +9,7 @@ function Preview() {
     return <h2>No Recording Found</h2>;
   }
 
-  const { url, blob, type } = state;
+  const { url, blob, type, invite } = state;
 
   const handleUpload = async () => {
     try {
@@ -20,6 +20,7 @@ function Preview() {
         blob,
         type === "video" ? "video.webm" : "audio.webm"
       );
+      formData.append("invite", invite);
 
       const response = await axios.post(
         "http://localhost:5000/media/upload",

@@ -1,7 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const invite = searchParams.get("invite");
+
+  console.log(invite);
+
 
   return (
     <div className="container">
@@ -12,7 +18,7 @@ function Home() {
 
       <button
         onClick={() =>
-          navigate("/record?type=audio")
+          navigate(`/record?type=audio&invite=${invite}`)
         }
       >
         Record Audio
@@ -20,7 +26,7 @@ function Home() {
 
       <button
         onClick={() =>
-          navigate("/record?type=video")
+          navigate(`/record?type=video&invite=${invite}`)
         }
       >
         Record Video

@@ -7,6 +7,7 @@ function Recorder() {
   const [searchParams] = useSearchParams();
 
   const type = searchParams.get("type");
+  const invite = searchParams.get("invite");
 
   const recorder = useRef(null);
   const stream = useRef(null);
@@ -121,6 +122,7 @@ function Recorder() {
           url,
           blob,
           type,
+          invite,
         },
       });
     });
