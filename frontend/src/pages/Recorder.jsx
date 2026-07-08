@@ -8,6 +8,7 @@ function Recorder() {
 
   const type = searchParams.get("type");
   const invite = searchParams.get("invite");
+  
 
   const recorder = useRef(null);
   const stream = useRef(null);

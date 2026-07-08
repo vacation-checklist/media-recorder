@@ -21,6 +21,7 @@ function Preview() {
         type === "video" ? "video.webm" : "audio.webm"
       );
       formData.append("invite", invite);
+      
 
       const response = await axios.post(
         "http://localhost:5000/media/upload",
