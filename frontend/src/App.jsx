@@ -5,6 +5,8 @@ import Recorder from "./pages/Recorder";
 import Preview from "./pages/Preview";
 import Success from "./pages/Success";
 import SendEmail from "./pages/SendEmail";
+import Questions from "./pages/Questions";
+import Question from "./pages/Question";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
   <Route path="/record" element={<Recorder />} />
   <Route path="/preview" element={<Preview />} />
   <Route path="/success" element={<Success />} />
+  <Route path="/questions" element={<Questions />} />
+  <Route path="/question/:id" element={<Question />} />
 </Routes>
   );
 }

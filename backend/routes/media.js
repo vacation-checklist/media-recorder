@@ -17,7 +17,9 @@ const {
 router.post("/upload", upload.single("media"), async (req, res) => {
   try {
     const invite = req.body.invite;
- 
+ const questionId = req.body.questionId;
+
+console.log(questionId);
 
 
     if (!req.file) {
@@ -58,17 +60,29 @@ router.post("/upload", upload.single("media"), async (req, res) => {
     console.log(transcript);
   
 
-    await pool.query(
+//     await pool.query(
+//   `INSERT INTO recordings
+//   (invite_token, filename, transcript)
+//   VALUES ($1, $2, $3)`,
+//   [
+//     invite,
+//     req.file.filename,
+//     transcript,
+//   ]
+// );
+    
+await pool.query(
   `INSERT INTO recordings
-  (invite_token, filename, transcript)
-  VALUES ($1, $2, $3)`,
+  (invite_token, question_id, filename, transcript)
+  VALUES ($1, $2, $3, $4)`,
   [
-    invite,
+    req.body.invite,
+    questionId,
     req.file.filename,
     transcript,
   ]
 );
-    
+
     res.json({
       success: true,
       invite,

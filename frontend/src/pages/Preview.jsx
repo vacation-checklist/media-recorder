@@ -9,7 +9,7 @@ function Preview() {
     return <h2>No Recording Found</h2>;
   }
 
-  const { url, blob, type, invite } = state;
+  const { url, blob, type, invite, questionId, } = state;
 
   const handleUpload = async () => {
     try {
@@ -21,6 +21,7 @@ function Preview() {
         type === "video" ? "video.webm" : "audio.webm"
       );
       formData.append("invite", invite);
+      formData.append("questionId", questionId);
       
 
       const response = await axios.post(
@@ -32,7 +33,8 @@ function Preview() {
 
       alert("Recording Uploaded Successfully!");
 
-      navigate("/success");
+     // navigate("/success");
+      navigate(`/questions?invite=${invite}`);
     } catch (error) {
       console.error(error);
       alert("Upload Failed");

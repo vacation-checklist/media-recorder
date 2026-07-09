@@ -13,7 +13,8 @@ router.post("/send", async (req, res) => {
     const invite = uuidv4();
 
     // Create unique recording link
-    const recordingLink = `${process.env.FRONTEND_URL}/record-home?invite=${invite}`;
+    //const recordingLink = `${process.env.FRONTEND_URL}/record-home?invite=${invite}`;
+    const recordingLink = `${process.env.FRONTEND_URL}/questions?invite=${invite}`;
 
     await resend.emails.send({
       from: "onboarding@resend.dev", // Change later to your verified sender

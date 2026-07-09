@@ -8,6 +8,7 @@ function Recorder() {
 
   const type = searchParams.get("type");
   const invite = searchParams.get("invite");
+  const questionId = searchParams.get("questionId");
   
 
   const recorder = useRef(null);
@@ -124,6 +125,7 @@ function Recorder() {
           blob,
           type,
           invite,
+          questionId,
         },
       });
     });
