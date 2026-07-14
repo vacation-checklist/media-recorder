@@ -18,6 +18,7 @@ router.post("/upload", upload.single("media"), async (req, res) => {
   try {
     const invite = req.body.invite;
  const questionId = req.body.questionId;
+ const mediaType = req.body.type;
 
 console.log(questionId);
 
@@ -71,14 +72,27 @@ console.log(questionId);
 //   ]
 // );
     
+// await pool.query(
+//   `INSERT INTO recordings
+//   (invite_token, question_id, filename, transcript)
+//   VALUES ($1, $2, $3, $4)`,
+//   [
+//     req.body.invite,
+//     questionId,
+//     req.file.filename,
+//     transcript,
+//   ]
+// );
+
 await pool.query(
   `INSERT INTO recordings
-  (invite_token, question_id, filename, transcript)
-  VALUES ($1, $2, $3, $4)`,
+  (invite_token, question_id, filename, media_type, transcript)
+  VALUES ($1,$2,$3,$4,$5)`,
   [
     req.body.invite,
     questionId,
     req.file.filename,
+    mediaType,
     transcript,
   ]
 );
@@ -96,6 +110,34 @@ await pool.query(
     res.status(500).json({
       success: false,
       message: error.message,
+    });
+  }
+});
+
+router.get("/recordings/:invite", async (req, res) => {
+  try {
+    const { invite } = req.params;
+
+    const result = await pool.query(
+      `SELECT
+          id,
+          question_id,
+          filename,
+          transcript
+       FROM recordings
+       WHERE invite_token = $1
+       ORDER BY id`,
+      [invite]
+    );
+
+    res.json(result.rows);
+
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
     });
   }
 });

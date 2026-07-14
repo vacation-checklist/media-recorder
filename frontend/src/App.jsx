@@ -7,6 +7,7 @@ import Success from "./pages/Success";
 import SendEmail from "./pages/SendEmail";
 import Questions from "./pages/Questions";
 import Question from "./pages/Question";
+import Playback from "./pages/Playback";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
   <Route path="/success" element={<Success />} />
   <Route path="/questions" element={<Questions />} />
   <Route path="/question/:id" element={<Question />} />
+  <Route path="/playback" element={<Playback />} />
 </Routes>
   );
 }

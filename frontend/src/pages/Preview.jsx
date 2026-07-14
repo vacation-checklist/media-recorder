@@ -22,6 +22,7 @@ function Preview() {
       );
       formData.append("invite", invite);
       formData.append("questionId", questionId);
+      formData.append("type", type);
       
 
       const response = await axios.post(
